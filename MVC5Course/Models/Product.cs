@@ -24,7 +24,7 @@ namespace MVC5Course.Models
         [Required]
         public string ProductName { get; set; }
         [Required]
-        [Range(2,99,ErrorMessage = "價格必續介於 2 ~ 99 之間")]
+        [Range(2,99,ErrorMessage = "價格必須介於 2 ~ 99 之間")]
         public Nullable<decimal> Price { get; set; }
         [Required]
         public Nullable<bool> Active { get; set; }
