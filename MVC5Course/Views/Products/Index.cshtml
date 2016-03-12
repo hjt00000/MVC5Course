@@ -9,43 +9,62 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Active)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Active)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
-        </td>
-    </tr>
+@if (!string.IsNullOrEmpty(Convert.ToString(TempData["CreateSuccessMsg"])))
+{
+    <h3>@TempData["CreateSuccessMsg"]</h3>
+}
+@if (!string.IsNullOrEmpty(Convert.ToString(TempData["EditSuccessMsg"])))
+{
+    <h3>@TempData["EditSuccessMsg"]</h3>
 }
 
-</table>
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th></th>
+        </tr>
+        @{
+            var products = Model.ToArray();
+        }
+        @for (var i = 0; i < products.Length; i++)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => products[i].ProductId)
+                    @Html.DisplayFor(modelItem => products[i].ProductName)
+                </td>
+                <td>
+                    @Html.EditorFor(modelItem => products[i].Price)
+                    @Html.ValidationMessageFor(modelItem => products[i].Price, "", new { @class = "text-danger" })
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>*@
+                <td>
+                    @Html.EditorFor(modelItem => products[i].Stock)
+                    @Html.ValidationMessageFor(modelItem => products[i].Stock, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = products[i].ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = products[i].ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = products[i].ProductId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <button type="submit" class="btn btn-primary">批次更新</button>
+}
