@@ -193,6 +193,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\NewLayoutController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="ActionFilter\共用的ActionFilterAttribute.cs" />
@@ -426,6 +427,9 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Shared\ErrorSql.cshtml" />
     <Content Include="Views\Home\RazorTest.cshtml" />
+    <Content Include="Views\NewLayout\Index.cshtml" />
+    <Content Include="Views\NewLayout\_ViewStart.cshtml" />
+    <Content Include="Views\NewLayout\_LayoutBootstrap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
