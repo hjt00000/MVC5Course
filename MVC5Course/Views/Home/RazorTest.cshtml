@@ -1,0 +1,21 @@
+﻿@model Int32[]
+
+
+@foreach (var i in Model)
+{
+    @i
+}
+
+
+@foreach (var j in Model)
+{
+    @(j+" ")
+}
+
+
+<ul>
+    @foreach (var k in Model)
+    {
+  <li>@k</li>
+    }
+</ul>

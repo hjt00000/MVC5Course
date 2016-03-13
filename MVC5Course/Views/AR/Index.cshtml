@@ -3,22 +3,17 @@
     ViewBag.Title = "Index";
 }
 <h2>@ViewBag.Title</h2>
-<div ng-app ng-controller="MainCtrl">
+<div >
     <button class="btn btn-success" name="getdata" onclick="javascript: getData()">取得 Json Test 資料</button>
-    <table class="table">
+    <table class="table" id="result">
         <tr>
+            <th></th>
             <th>ProductId</th>
             <th>ProductName</th>
             <th>Price</th>
-            <th>Stock</th>
             <th>Activity</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <th>Stock</th>
+            <th></th>
         </tr>
     </table>
 </div>
@@ -28,12 +23,6 @@
         $.getJSON('/AR/JsonTest', '', function (data) {
             if (data) {
                 var html = "";
-                html += "<table class='table'>";
-                html += "<tr>";
-                for (var j in data[0]) {
-                    html += "<th>" + j + "</th>";
-                }
-                html += "</tr>";
                 for (var i in data) {
                     html += "<tr>";
                     for (var j in data[i]) {
@@ -41,7 +30,7 @@
                     }
                     html += "</tr>";
                 }
-                html += "</table>";
+                
                 $('#result').append(html);
             }
         });
