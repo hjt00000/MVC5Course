@@ -61,6 +61,14 @@
       <HintPath>..\packages\Microsoft.AspNet.Mvc.Futures.5.0.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -188,12 +196,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ARController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\EFController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MBController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\NewLayoutController.cs" />
+    <Compile Include="Controllers\OrderLinesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="ActionFilter\共用的ActionFilterAttribute.cs" />
@@ -317,6 +327,8 @@
     <Content Include="Content\alphago-logo.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bullet-star-icone-.png" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="file-manager.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -348,6 +360,8 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="widgets.html" />
     <EntityDeploy Include="Models\Fabrics.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -430,6 +444,22 @@
     <Content Include="Views\NewLayout\Index.cshtml" />
     <Content Include="Views\NewLayout\_ViewStart.cshtml" />
     <Content Include="Views\NewLayout\_LayoutBootstrap.cshtml" />
+    <Content Include="Views\OrderLines\Create.cshtml" />
+    <Content Include="Views\OrderLines\Delete.cshtml" />
+    <Content Include="Views\OrderLines\Details.cshtml" />
+    <Content Include="Views\OrderLines\Edit.cshtml" />
+    <Content Include="Views\OrderLines\Index.cshtml" />
+    <Content Include="Views\Products\EditorTemplates\Product.cshtml" />
+    <Content Include="Views\Products\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\DisplayTemplates\Gender.cshtml" />
+    <Content Include="Views\Clients\DisplayTemplates\OnlyDate.cshtml" />
+    <Content Include="Views\Clients\DisplayTemplates\Star.cshtml" />
+    <Content Include="Views\Clients\EditorTemplates\Gender.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

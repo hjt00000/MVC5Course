@@ -1,0 +1,9 @@
+﻿@model Double?
+
+@if (Model.HasValue)
+{
+    for (Double i = 0; i < Model.Value; i++)
+    {
+        <img src="~/Content/bullet-star-icone-.png" />
+    }
+}

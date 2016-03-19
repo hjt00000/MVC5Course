@@ -15,10 +15,25 @@ namespace MVC5Course.Controllers
         //private FabricsEntities db = new FabricsEntities();
         ProductRepository repo = RepositoryHelper.GetProductRepository();
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? ProductId, bool? isActive,string keyword)
         {
+            ViewData["ProductId"] = ProductId;
             
-            return View(repo.All().Take(5));
+            var data = repo.All();
+            if(isActive.HasValue)
+            {
+                data = data.Where(p => p.Active == isActive.Value);
+            }
+            if(!string.IsNullOrEmpty(keyword))
+            {
+                data = data.Where(p => p.ProductName.Contains(keyword));
+            }
+            data = data.Take(5);
+            List<SelectListItem> item = new List<SelectListItem>();
+            item.Add(new SelectListItem { Text = "是", Value = "true" });
+            item.Add(new SelectListItem { Text = "否", Value = "false" });
+            ViewData["isActive"] = new SelectList(item, "Value", "Text");
+            return View(data);
         }
 
         [HttpPost]

@@ -1,9 +1,11 @@
-﻿@model IEnumerable<MVC5Course.Models.Product>
+﻿@model IEnumerable<Product>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@section breadcrumb{
+    <li>@Html.ActionLink("產品清單", "Index", "Products")</li>
+}
 <h2>Index</h2>
 
 <p>
@@ -17,9 +19,16 @@
 {
     <h3>@TempData["EditSuccessMsg"]</h3>
 }
-
+@using (Html.BeginForm("Index", "Products", FormMethod.Get))
+{
+    <div>
+        @Html.DropDownList("isActive", null, "請選擇", new { onchange = "this.form.submit();" })
+        @Html.TextBox("keyword", null, new { onchange = "this.form.submit();" , @class = "form-control"})
+    </div>
+}
 @using (Html.BeginForm())
 {
+
     <table class="table">
         <tr>
             <th>
@@ -28,9 +37,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Price)
             </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Active)
-                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
@@ -41,7 +50,9 @@
         }
         @for (var i = 0; i < products.Length; i++)
         {
-            <tr>
+
+            <tr @if (ViewData["ProductId"] != null && (int)ViewData["ProductId"] == products[i].ProductId) { ViewBag.Details = products[i]; @: class="btn-info"
+                            }>
                 <td>
                     @Html.HiddenFor(modelItem => products[i].ProductId)
                     @Html.DisplayFor(modelItem => products[i].ProductName)
@@ -50,9 +61,9 @@
                     @Html.EditorFor(modelItem => products[i].Price)
                     @Html.ValidationMessageFor(modelItem => products[i].Price, "", new { @class = "text-danger" })
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Active)
-                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => products[i].Active)
+                </td>
                 <td>
                     @Html.EditorFor(modelItem => products[i].Stock)
                     @Html.ValidationMessageFor(modelItem => products[i].Stock, "", new { @class = "text-danger" })
@@ -60,11 +71,15 @@
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = products[i].ProductId }) |
                     @Html.ActionLink("Details", "Details", new { id = products[i].ProductId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = products[i].ProductId })
+                    @Html.ActionLink("Delete", "Delete", new { id = products[i].ProductId }) |
+                    <a href="@Url.Action("Index", "Products", new { ProductId = products[i].ProductId })">OrderLines</a>
+
                 </td>
             </tr>
         }
 
     </table>
     <button type="submit" class="btn btn-primary">批次更新</button>
-}
+
+    @Html.Action("Index", "OrderLines", new { ProductId = ViewData["ProductId"] })
+            }

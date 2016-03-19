@@ -14,6 +14,10 @@ namespace MVC5Course.Models
         {
             return this.All().FirstOrDefault(p => p.ProductId == value);
         }
+        public IQueryable<Product> All(bool isActive)
+        {
+            return this.All().Where(p => p.Active == isActive);
+        }
     }
 
     public  interface IProductRepository : IRepository<Product>

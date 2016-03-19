@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
     <meta name="description" content="MVC5Course" />
 </head>
 <body>
@@ -24,18 +24,23 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("首頁", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Client", "Index", "Clients")</li>
                     <li>@Html.ActionLink("產品資料管理", "Index", "Products")</li>
                     <li>@Html.ActionLink("關於", "About", "Home")</li>
                     <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("測試","Index","Test")</li>
+                    <li>@Html.ActionLink("測試", "Index", "Test")</li>
                     <li>@Html.ActionLink("EF測試", "Index", "EF")</li>
+                    @RenderSection("breadcrumb", false)
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div id="main">
+            @RenderBody()
+        </div>
+        
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
@@ -45,5 +50,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
 </html>
