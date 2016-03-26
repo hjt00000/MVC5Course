@@ -46,6 +46,8 @@ namespace MVC5Course.Controllers
         }
 
         // GET: Clients/Create
+
+        [GenderList]
         public ActionResult Create()
         {
             ViewBag.OccupationId = new SelectList(db.Occupation, "OccupationId", "OccupationName");
